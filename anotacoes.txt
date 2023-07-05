@@ -26,7 +26,11 @@ Sempre que executamos o método "Read()" ele irá começar a leitura a partir do
 
 É a interface que contém o método "Dispose()", que é o responsável por descartar a referência que não será mais utilizada. Fluxos de dados e classes que fazem requisições para lugares externos normalmente implementam essa interface.
 
-Podemos garantir que nossa referência "IDisposable" será descartada utilizando ela dentro de um "using ()".
+O método "Dispose()" chama o método "Close()", que é o método que irá encerrar completamente a referência em questão.
+
+Podemos garantir que nossa referência "IDisposable" será descartada utilizando ela dentro de um "using ()". Podemos fazer a mesma coisa manualmente usando um "try / catch / finally".
+
+O "using ()" também verifica se a referência "IDisposable" que estamos abrindo não é nula com um try / catch elaborado especificamente para isso, por isso não precisamos fazer esse tratamento quando usamos um bloco de código "using ()".
 
 ============ENUM============
 
@@ -37,3 +41,39 @@ Existem enums no C# e funcionam da mesma maneira que no Java.
 É uma classe que nos permite trabalhar com encoding para UTF-8.
 
 Possui métodos como o "GetString(<byte[]>)", que nos retorna uma string no respeitando a tabela unicode a partir de um array de bytes (ou buffer), usando o encoder UTF-8.
+
+O método "GetString()" também aceita mais dois argumentos além do buffer, que são o índice no qual ele vai iniciar a conversão no buffer e a quantidade de bytes que ele vai ler do buffer. Usando esses dois argumentos, não precisamos limpar o buffer a cada "Read()" feito nele, pois podemos passar que ele só deve converter os bytes em string até o número de bytes que foram lidos pelo método "Read()", que fica acessível no retorno do método. Assim, mesmo tendo bytes repetidos mais ao final do buffer, eles não serão convertidos e não teremos informações repetidas no nosso texto.
+
+============partial class============
+
+Uma "partial class" é uma classe que é dividida em mais de um arquivo e junta na compilação, funcionando como se a classe estivesse inteira em um arquivo só.
+
+Para termos uma partial class, basta usar a palavra chave "partial" em todas as definições daquela mesma classe.
+
+Isso é útil em situações em que estamos lidando com classes geradas automaticamente, onde coisas podem mudar e podemos perder o nosso trabalho caso a classe seja gerada novamente. Nesse caso, podemos ter uma classe parcial e escrever nosso código fora da classe gerada automaticamente, de forma que não perderíamos o nosso trabalho caso a classe fosse gerada novamente com alguma alteração.
+
+Se uma classe está ficando muito grande e pensamos em usar um partial apenas para deixá-la mais legível, isso é sinal que a nossa classe está com mais responsabilidades do que deveria, o que não é bom. Em casos assim devemos criar outras classes para dividir as responsabilidades.
+
+============StreamReader============
+
+É uma classe que nos ajuda a fazer a leitura de streams de maneira mais fácil e de alto nível.
+
+Recebe um Stream em sua construção e possui métodos e propriedades que auxiliam na manipulação do nosso fluxo de dados.
+
+Exemplos:
+
+    "ReadLine()":
+        Lê uma linha do nosso Stream. Pula para a próxima linha a cada execução do método.
+
+    "ReadToEnd()":
+        Carrega o nosso Stream inteiro sem um buffer e mostra tudo que tem nele decodificando os bytes (pode ser uma má ideia).
+
+    "Read()":
+        Lê um byte apenas do nosso Stream.
+
+    "EndOfStream":
+        Retorna um bool informando se o Stream está no final ou não. Útil para ser usado em um loop para percorrer o Stream todo sem carregá-lo completo de uma vez.
+
+Usando o StreamReader temos muito mais facilidade para trabalhar com fluxos de dados.
+
+É importante lembrar que quando utilizamos o "using ()", não precisamos nos preocupar em fechar os objetos criados com o objeto temporário do bloco de código, pois todos serão fechados juntamente com ele.
