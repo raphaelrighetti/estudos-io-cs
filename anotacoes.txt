@@ -1,0 +1,39 @@
+============CAMINHOS DE ARQUIVOS============
+
+O C# irá sempre olhar dentro da pasta do arquivo executável de dabug quando executamos um projeto C# dentro do VisualStudio, ou seja, dentro da pasta "bin\Degub\net6.0".
+
+Se temos um arquivo dentro dessa pasta, nem precisamos passar o caminho todo até ele, basta colocarmos o nome do arquivo como path para acessá-lo, que o C# já irá encontrá-lo dentro dessa pasta para nós.
+
+============FileStream============
+
+É uma classe que nos permite criar um fluxo de dados em um arquivo (read & write).
+
+============Read(<buffer>, <offset>, <count>)============
+
+É o método que utilizamos para ler o conteúdo de um fluxo de dados, como um FileStream, por exemplo.
+
+Recebe um "byte[]" como primeiro parâmetro, que é um array de bytes que será usado como buffer, para ir armazenando os dados recebidos do fluxo que serão usados. Normalmente o buffer terá 1024 posições, pois esse é o número de bytes que existem em 1KB.
+
+Como segundo parâmetro, recebe o offset, que representa de qual índice do buffer a leitura deve começar.
+
+Como terceiro parâmetro, recebe quantos bytes do buffer ele irá utilizar, que será o "buffer.Length" na maioria dos casos.
+
+O método "Read()" retorna um número inteiro que representa o número de bytes que foram lidos e inseridos no buffer, sendo 0 quando não há mais nenhum byte a ser lido. Podemos utilizar isso para fazer uma leitura dinâmica por todo o nosso arquivo, sem precisar ter um buffer do tamanho exato do arquivo com qual estamos trabalhando.
+
+Sempre que executamos o método "Read()" ele irá começar a leitura a partir do último ponto que ele parou na última leitura, por isso conseguimos utilizá-lo em um while para ler o arquivo todo com um buffer menor do que o tamanho do arquivo.
+
+============IDisposable============
+
+É a interface que contém o método "Dispose()", que é o responsável por descartar a referência que não será mais utilizada. Fluxos de dados e classes que fazem requisições para lugares externos normalmente implementam essa interface.
+
+Podemos garantir que nossa referência "IDisposable" será descartada utilizando ela dentro de um "using ()".
+
+============ENUM============
+
+Existem enums no C# e funcionam da mesma maneira que no Java.
+
+============UTF8Encoding============
+
+É uma classe que nos permite trabalhar com encoding para UTF-8.
+
+Possui métodos como o "GetString(<byte[]>)", que nos retorna uma string no respeitando a tabela unicode a partir de um array de bytes (ou buffer), usando o encoder UTF-8.
