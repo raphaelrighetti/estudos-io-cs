@@ -41,3 +41,19 @@ Também pude ver mais detalhes sobre o FileMode e como ele muda o comportamento 
 Nesta aula aprendi um pouco mais sobre o funcionamento da classe StreamWriter e o seu método "Flush()", que nos permite limpar o buffer utilizado para a escrita no fluxo dados e fazer de fato a escrita no momento em que quisermos, sem que ela seja feita apenas no fechamento do fluxo de dados com o qual estamos trabalhando.
 
 Além disso, aprendi sobre as classes "BinaryReader" e "BinaryWriter", que nos permitem trabalhar com leitura e escrita de arquivo binários.
+
+### Aula 5
+
+#### Stream do Console e classe File
+
+Nesta aula aprendi a abrir um Stream usando o input padrão do Console do C#, por meio do método "OpenStandardInput()" dele. Todos os métodos do Console que recebem um input do usuário e retornam o valor dele utilizam algo parecido por baixo dos panos e facilitam bastante a nossa vida, mas é interessante saber que podemos fazer isso utilizando um Stream diretamente também.
+
+Além disso, aprendi sobre a classe "File", que é uma classe estática que possui vários métodos que nos auxiliam a realizar ações de leitura e escrita de forma mais simples em arquivos, apesar de não ser recomendada quando temos um arquivo muito grande ou precisamos fazer algo mais complexo.
+
+### Conclusão
+
+Neste curso pude aprender muito sobre como funciona o sistema de input e output do C# trabalhando com arquivos ".txt", ".csv", arquivos binários e muito mais coisas.
+
+Achei muito interessante e mais intuitivo que no Java mexer com os fluxos de dados no C#, entendi melhor como funcionam os buffer quando estamos trabalhando com streams e pude praticar bastante tudo isso que eu aprendi.
+
+Foi um curso muito bom e que fico feliz de ter feito, estou animado para continuar com os meus estudos em C#.

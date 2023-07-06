@@ -119,3 +119,19 @@ Podemos trabalhar com arquivos binários no C#, fazendo operações tanto de lei
 É importante saber que, quando se trata de arquivos binários, não temos métodos como o "WriteLine()" e nem "ReadLine()", e os valores binários guardados serão guardados com a informação binária do tipo específico que inserimos. O conteúdo binário muda o número de bytes para cada tipo, como os números inteiros que são representados por 4 bytes e outros tipos que podem ser representados por mais ou menos bytes do que isso.
 
 Para ler um arquivo binário com o "BinaryReader", apenas temos que utilizar os métodos "Read" do tipo correto que temos no nosso arquivo binário. Importante saber que a cada vez que utilizamos um método "Read" do BinaryReader, o item que está sendo lido irá mudar para o próximo que está guardado no arquivo, independentemente do tipo do "Read" que estivermos utilizando.
+
+============Console.OpenStandardInput()============
+
+Esse é um método que nos permite acessar o input padrão do nosso console como uma Stream.
+
+Esse input padrão é pego quando damos enter no nosso console, sendo o que a gente escreveu antes de dar enter o conteúdo desse input.
+
+Os métodos do Console que recebem inputs do usuário utilizam um fluxo de dados dessa forma por baixo dos panos.
+
+============File============
+
+É uma classe estática que nos auxilia a trabalhar com leitura e escrita em arquivos, possuindo métodos como "ReadAllLines(<caminho>)", "ReadAllBytes(<caminho>)" e "WriteAllText(<caminho>)" que fazem exatamente as coisas que os nomes deles dizem de maneira muito mais simples do que quando estamos trabalhando com um FileStream ou algo do tipo.
+
+Apesar de ter esses métodos que facilitam bastante coisa, é importante ter em mente que não funcionará da melhor forma quando estivermos trabalhando com arquivos maiores e etc, pois esses métodos não utilizam buffers limitados e coisas do tipo, o que pode fazer com que muito memória seja utilizada.
+
+Tirando essa parte ruim que apresentei acima, é uma classe muito útil quando estamos trabalhando com arquivos pequenos e com ações mais básicas neles.

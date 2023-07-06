@@ -4,16 +4,19 @@ using System.Text;
 
 //string caminhoArquivo = "contas.csv";
 //string caminhoNovoArquivo = "contas-exportadas.csv";
-string caminhoArquivoBinario = "binario.bin";
+//string caminhoArquivoBinario = "binario.bin";
+string caminhoArquivoInput = "inputs-usuario.txt";
 
 //LerArquivoDiretamente(caminhoArquivo);
 //LerArquivoComStreamReader(caminhoArquivo);
 //EscreverArquivoDiretamente(caminhoNovoArquivo);
 //EscreverArquivoComStreamWriter(caminhoNovoArquivo);
-EscreverArquivoBinario(caminhoArquivoBinario);
-LerArquivoBinario(caminhoArquivoBinario);
+//EscreverArquivoBinario(caminhoArquivoBinario);
+//LerArquivoBinario(caminhoArquivoBinario);
 
-Console.ReadKey();
+EscreverArquivoComInputDoConsole(caminhoArquivoInput);
+
+//Console.ReadKey();
 
 static void LerArquivoDiretamente(string caminho)
 {
@@ -114,4 +117,26 @@ static void LerArquivoBinario(string caminho)
     bool ativo = br.ReadBoolean();
 
     Console.WriteLine($"{numero}, {agencia}, {saldo}, {nome}, {ativo}");
+}
+
+static void EscreverArquivoComInputDoConsole(string caminho)
+{
+    using var si = Console.OpenStandardInput();
+    using var sw = new StreamWriter(new FileStream(caminho, FileMode.Create));
+
+    var buffer = new byte[1024];
+    int bytesLidos = -1;
+
+    while (bytesLidos != 2)
+    {
+        bytesLidos = si.Read(buffer, 0, buffer.Length);
+
+        if (bytesLidos == 2) break;
+
+        var encoding = Encoding.UTF8;
+        string conteudo = encoding.GetString(buffer, 0, bytesLidos).Trim();
+
+        sw.WriteLine(conteudo);
+        sw.Flush();
+    }
 }
