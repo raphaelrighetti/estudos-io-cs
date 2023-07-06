@@ -1,4 +1,6 @@
-﻿namespace ByteBankIO.Modelos;
+﻿using System.Globalization;
+
+namespace ByteBankIO.Modelos;
 
 public class ContaCorrente
 {
@@ -7,11 +9,15 @@ public class ContaCorrente
     public double Saldo { get; private set; }
     public Cliente Titular { get; set; }
 
-    public ContaCorrente(int numero, int agencia, string nome, string cpf, string? profissao)
+    public ContaCorrente(int numero, int agencia, string nome, string? cpf, string? profissao)
     {
         Numero = numero;
         Agencia = agencia;
-        Titular = new(nome, cpf) { Profissao = profissao };
+        Titular = new(nome)
+        { 
+            CPF = cpf,
+            Profissao = profissao
+        };
     }
 
     public void Depositar(double valor)
@@ -37,5 +43,16 @@ public class ContaCorrente
         }
 
         Saldo += valor;
+    }
+
+    public override string ToString()
+    {
+        string texto =
+            $"Número: {Numero}, " +
+            $"Agência: {Agencia}, " +
+            $"Saldo: {Saldo.ToString(new CultureInfo("en-US"))}, " +
+            $"Titular: {Titular.Nome}";
+
+        return texto;
     }
 }

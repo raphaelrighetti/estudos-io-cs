@@ -23,3 +23,13 @@ Nesta aula aprendi a facilitar a leitura de um Stream utilizando a classe "Strea
 Além disso, vi mais detalhes sobre o "using ()" que faz com que referências "IDisposable" sejam descartadas ao final do bloco e aprendi a como utilizar classes parciais (partial class).
 
 Também vi que podemos passar mais argumentos para o método "GetString()" do UTF8Encoding, de forma que especificamos de onde até onde o conteúdo do buffer deve ser lido por ele, assim evitando duplicação de informações sem ter que ficar esvaziando o buffer a cada "Read()".
+
+### Aula 3
+
+#### Criando um arquivo
+
+Nesta aula aprendi a fazer escrita em um arquivo utilizando o FileStream e também o StreamWriter, que nos auxilia com métodos mais simples de serem utilizados e que não precisamos fazer a conversão de string para bytes manualmente para utilizar.
+
+Além disso, aprendi sobre o "CultureInfo", que é uma classe que define um padrão de formatação baseado em uma cultura de um país/localidade. Ela é muito útil para definirmos a formatação que ocorre em um método "Parse()" ou em uma conversão de datas para strings, nos permitindo modificar o padrão de formatação para o adequado dependendo da cultura que escolhemos.
+
+Também pude ver mais detalhes sobre o FileMode e como ele muda o comportamento do nosso FileStream.

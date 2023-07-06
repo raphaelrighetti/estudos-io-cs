@@ -76,4 +76,34 @@ Exemplos:
 
 Usando o StreamReader temos muito mais facilidade para trabalhar com fluxos de dados.
 
-É importante lembrar que quando utilizamos o "using ()", não precisamos nos preocupar em fechar os objetos criados com o objeto temporário do bloco de código, pois todos serão fechados juntamente com ele.
+É importante saber que quando utilizamos um StreamReader em um bloco "using ()", ele fecha também a Stream utilizada para criar o StreamReader, mas é sempre uma boa prática utilizar o bloco "using ()" tanto para a Stream quanto para o StreamReader. Se fechamos somente a Stream e não o StreamReader, o StreamReader ainda continuará aberto, mesmo que não consigamos usá-lo.
+
+============CultureInfo============
+
+É a classe que armazena as peculiaridades de formatação de cada cultura, que por padrão é a cultura do país em que você está (pt-BR no caso do Brasil).
+
+Essa classe implementa a interface "IFormatProvider", que é uma interface utilizada para fornecer um padrão de formatação para conversão ou criação de objetos, que é muito útil para converter strings em números, datas em strings e etc, sempre respeitando a formatação certa da cultura.
+
+Podemos passar um CultureInfo da cultura que quisermos, como "en-US", por exemplo, para os métodos "Parse" dos números no C#, desta forma fazendo com que o ponto flutuante de um double em uma string seja o caractere "." em vez de ",", que é o padrão que temos no CultureInfo pt-BR.
+
+Podemos utilizar o CultureInfo em métodos "ToString" de números também.
+
+============ESCREVENDO ARQUIVOS============
+
+Escrever arquivos no C# é bem parecido com o processo de lê-los.
+
+Da mesma forma que utilizamos um FileStream para fazer a leitura, utilizamos um FileStream para fazer a escrita também.
+
+Podemos utilizar o método "Write(<byte[]>, <offset>, <count>)" para escrever no nosso arquivo. Devemos ter em mente que só poderemos escrever em um arquivo conteúdo em bytes, da mesma forma que temos no buffer quando lemos um arquivo.
+
+Podemos transformar uma string em um array de bytes com a nossa classe de encoding, dessa forma conseguindo ter o conteúdo no formato certo para passarmos ao método "Write()" do FileStream.
+
+É importante saber que se queremos sobrescrever todo o conteúdo de um arquivo, não precisamos usar métodos do FileStream para isso. Para sobrescrever um arquivo já existente, basta utilizarmos o FileMode.Create, que cria um arquivo novo ou sobrescreve o arquivo se ele já existir.,
+
+============StreamWriter============
+
+É uma classe que facilita a escritura em streams.
+
+Também possui o método "Write()", mas não precisamos converter o conteúdo para um array de bytes para conseguirmos escrever, podemos passar uma string diretamente, além de outros tipos suportados.
+
+Também possui outros métodos como o "WriteLine()" e etc.
