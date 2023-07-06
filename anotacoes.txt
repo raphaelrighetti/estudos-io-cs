@@ -107,3 +107,15 @@ Podemos transformar uma string em um array de bytes com a nossa classe de encodi
 Também possui o método "Write()", mas não precisamos converter o conteúdo para um array de bytes para conseguirmos escrever, podemos passar uma string diretamente, além de outros tipos suportados.
 
 Também possui outros métodos como o "WriteLine()" e etc.
+
+É importante saber que quando utilizamos os métodos de escrita do StreamWriter, não estamos escrevendo diretamente na nossa Stream, e sim em um buffer que armazena as informações que devem ser escritas e será utilizado para realmente fazer a escrita quando a Stream for fechada.
+
+Nós podemos utilizar o método "Flush()" para limpar esse buffer e realizar realmente a escrita na Stream no momento que quisermos, sem ter que esperar o fechamento da Stream.
+
+============ARQUIVOS BINÁRIOS============
+
+Podemos trabalhar com arquivos binários no C#, fazendo operações tanto de leitura quanto de escrita. Temos as classes "BinaryReader" e "BinaryWriter" para isso.
+
+É importante saber que, quando se trata de arquivos binários, não temos métodos como o "WriteLine()" e nem "ReadLine()", e os valores binários guardados serão guardados com a informação binária do tipo específico que inserimos. O conteúdo binário muda o número de bytes para cada tipo, como os números inteiros que são representados por 4 bytes e outros tipos que podem ser representados por mais ou menos bytes do que isso.
+
+Para ler um arquivo binário com o "BinaryReader", apenas temos que utilizar os métodos "Read" do tipo correto que temos no nosso arquivo binário. Importante saber que a cada vez que utilizamos um método "Read" do BinaryReader, o item que está sendo lido irá mudar para o próximo que está guardado no arquivo, independentemente do tipo do "Read" que estivermos utilizando.

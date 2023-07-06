@@ -33,3 +33,11 @@ Nesta aula aprendi a fazer escrita em um arquivo utilizando o FileStream e tamb�
 Além disso, aprendi sobre o "CultureInfo", que é uma classe que define um padrão de formatação baseado em uma cultura de um país/localidade. Ela é muito útil para definirmos a formatação que ocorre em um método "Parse()" ou em uma conversão de datas para strings, nos permitindo modificar o padrão de formatação para o adequado dependendo da cultura que escolhemos.
 
 Também pude ver mais detalhes sobre o FileMode e como ele muda o comportamento do nosso FileStream.
+
+### Aula 4
+
+#### Flush() e arquivos binários
+
+Nesta aula aprendi um pouco mais sobre o funcionamento da classe StreamWriter e o seu método "Flush()", que nos permite limpar o buffer utilizado para a escrita no fluxo dados e fazer de fato a escrita no momento em que quisermos, sem que ela seja feita apenas no fechamento do fluxo de dados com o qual estamos trabalhando.
+
+Além disso, aprendi sobre as classes "BinaryReader" e "BinaryWriter", que nos permitem trabalhar com leitura e escrita de arquivo binários.

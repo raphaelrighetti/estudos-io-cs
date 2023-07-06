@@ -2,13 +2,16 @@
 using System.Globalization;
 using System.Text;
 
-//var caminhoArquivo = "contas.csv";
-var caminhoNovoArquivo = "contas-exportadas.csv";
+//string caminhoArquivo = "contas.csv";
+//string caminhoNovoArquivo = "contas-exportadas.csv";
+string caminhoArquivoBinario = "binario.bin";
 
 //LerArquivoDiretamente(caminhoArquivo);
 //LerArquivoComStreamReader(caminhoArquivo);
 //EscreverArquivoDiretamente(caminhoNovoArquivo);
-EscreverArquivoComStreamWriter(caminhoNovoArquivo);
+//EscreverArquivoComStreamWriter(caminhoNovoArquivo);
+EscreverArquivoBinario(caminhoArquivoBinario);
+LerArquivoBinario(caminhoArquivoBinario);
 
 Console.ReadKey();
 
@@ -83,4 +86,32 @@ static void EscreverArquivoComStreamWriter(string caminho)
     using var sw = new StreamWriter(fs);
 
     sw.WriteLine(conteudo);
+}
+
+static void EscreverArquivoBinario(string caminho)
+{
+    using var fs = new FileStream(caminho, FileMode.Create);
+    using var bw = new BinaryWriter(fs);
+
+    bw.Write(123);
+    bw.Write(1234);
+    bw.Write(125.67);
+    bw.Write("Eh Nois");
+    bw.Write(true);
+
+    Console.WriteLine("Arquivo criado com sucesso!");
+}
+
+static void LerArquivoBinario(string caminho)
+{
+    using var fs = new FileStream(caminho, FileMode.Open);
+    using var br = new BinaryReader(fs);
+
+    int numero = br.ReadInt32();
+    int agencia = br.ReadInt32();
+    double saldo = br.ReadDouble();
+    string nome = br.ReadString();
+    bool ativo = br.ReadBoolean();
+
+    Console.WriteLine($"{numero}, {agencia}, {saldo}, {nome}, {ativo}");
 }
